@@ -40,7 +40,29 @@ export function render (jsxObj, container, cb) {
   let element = document.createElement(type);
   for (let key in props) {
     if (!props.hasOwnProperty(key)) break;
-
+    if (key === 'className') {
+      element.className = props[key];
+      continue;
+    };
+    if (key === 'style') {
+      for(let sKey in props[key]) {
+        if (!props[key].hasOwnProperty(sKey)) break;
+        element['style'][sKey] = props[key][sKey]
+      } 
+      continue;
+    };
+    if (key === 'children') {
+      let children = props[key];
+      children = Array.isArray(children) ? children  : [children]
+      children.forEach(item => {
+        if (typeof item === 'string') {
+          element.appendChild(document.createTextNode(item));
+          return;
+        }
+        render(item, element)
+      })
+      continue;
+    };
     element.setAttribute(key, props[key]);
   }
   container.appendChild(element);
