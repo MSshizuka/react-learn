@@ -40,6 +40,8 @@ export function render (jsxObj, container, cb) {
   let element = document.createElement(type);
   for (let key in props) {
     if (!props.hasOwnProperty(key)) break;
+
+    element.setAttribute(key, props[key]);
   }
   container.appendChild(element);
   cb && cb();
