@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import Student from './person'  // 函数式组件
 
 
-/* 类组件 */
+/* 类组件 */  /* 受控组件: 基于状态的更新来驱动视图渲染的组件 */
 class Student extends React.Component {
   static defaultProps = {
     name: "张三"
@@ -15,22 +15,34 @@ class Student extends React.Component {
   }
   constructor(props) {
     super(props);
-    
+    this.state = {
+      time: new Date().toLocaleString()
+    }
   }
 
   render() {
+    console.log('B')
     return <div>
       <h3>{this.props.name}</h3>
       <h3>{this.props.age}</h3>
+      <div>当前时间: <span>{this.state.time}</span></div>
     </div>
+  }
+  componentDidMount() {
+    //=>第一次加载组件渲染完毕 等价于 VUE中mounted
+    setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleString()
+      });
+    }, 1000)
+    console.log('A')
   }
 }
 
 ReactDOM.render(
   <div>
     新视云科技网络有限公司
-    <Student name="王博文" age="18"/>
-    <Student  age="18"/>
+    <Student name="王博文" age="18" />
   </div>,
   document.getElementById('root')
 );

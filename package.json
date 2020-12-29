@@ -70,7 +70,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "serve": "set Port=8080 && node scripts/start.js",
+    "serve": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
