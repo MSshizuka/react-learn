@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import Student from './person'  // 函数式组件
 
 
-/* 类组件 */  /* 受控组件: 基于状态的更新来驱动视图渲染的组件 */
+/* 类组件 */ 
 class Student extends React.Component {
   static defaultProps = {
     name: "张三"
@@ -19,21 +19,33 @@ class Student extends React.Component {
       time: new Date().toLocaleString()
     }
   }
-
+   /* 受控组件: 基于状态的更新来驱动视图渲染的组件 */
+   /* 非受控组件: 不受状态管控,直接操作DOM */
   render() {
     console.log('B')
     return <div>
       <h3>{this.props.name}</h3>
       <h3>{this.props.age}</h3>
-      <div>当前时间: <span>{this.state.time}</span></div>
+      <p ref={el => {
+        // ref多用函数模式
+        // el代表当前元素对象
+        // 直接把元素对象挂载到实例上
+        this.timeBox = el;
+      }}>{new Date().toLocaleString()}</p>
+      
+      {/* <div>当前时间: <span>{this.state.time}</span></div> */}
     </div>
   }
+
   componentDidMount() {
     //=>第一次加载组件渲染完毕 等价于 VUE中mounted
+
     setInterval(() => {
-      this.setState({
+      /* this.setState({
         time: new Date().toLocaleString()
-      });
+      }); */
+
+      this.timeBox.innerHTML = new Date().toLocaleString();
     }, 1000)
     console.log('A')
   }
