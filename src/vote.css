@@ -1,0 +1,47 @@
+/* 
+ *  React不像VUE 可能会导致各板块之间的样式冲突
+ *    基于webpack插件处理为私有
+ *    或者自己在写的时候注意样式类的区分(公共的和私有的样式自己划分好)
+ */
+
+.voteBox {
+  box-sizing   : border-box;
+  border       : 1px solid lightblue;
+  width        : 400px;
+  margin       : 20px auto;
+  padding      : 10px;
+  border-radius: 5px;
+}
+
+.headerBox {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+}
+
+.headerBox h3 {
+  font-size: 16px;
+}
+
+.headerBox span {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.mainBox p {
+  line-height: 35px;
+  font-size: 14px;
+}
+
+.footerBox {
+  line-height: 50px;
+}
+
+.footerBox button {
+  width: 100px;
+  height: 35px;
+  margin-right: 15px;
+}
