@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import './vote.css';
-import EventEmit from './EventEmit'
+import EventEmit from '../EventEmit'
 
 // class VoteMain extends React.Component {
 //   render() {
